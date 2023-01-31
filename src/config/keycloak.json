@@ -1,0 +1,10 @@
+{
+    "realm": "DBL-PPRO",
+    "auth-server-url": "http://localhost:8080/",
+    "ssl-required": "none",
+    "resource": "backend_sending_app",
+    "credentials": {
+      "secret": "e6SCrlB9Pah1u4EqlbJvKPveCDnb1Q37"
+    },
+    "confidential-port": 0
+  }
