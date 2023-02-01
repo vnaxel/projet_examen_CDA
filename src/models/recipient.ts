@@ -1,12 +1,13 @@
-import mongoose from 'mongoose';
-import { DeliveryStatuses, DeliveryStatusesSchema } from './deliveryStatus';
+import mongoose, { ObjectId } from 'mongoose';
 const { Schema } = mongoose;
 
 export interface RecipientDocument extends Document {
+    _id: any;
     sendingId: string;
-    letter: string;
-    date: Date;
-    deliveryStatuses: DeliveryStatuses;
+    address: string;
+    firstName: string;
+    lastName: string;
+    deliveryStatuses: { lastStatus: { status: string, date: Date }, statuses: { status: string, date: Date }[] | []};
 }
 
 export const RecipientSchema = new Schema({
@@ -14,7 +15,7 @@ export const RecipientSchema = new Schema({
     address: String,
     firstName: String,
     lastName: String,
-    deliveryStatuses: DeliveryStatusesSchema
+    deliveryStatuses: { lastStatus: { status: String, date: Date }, statuses: [{ status: String, date: Date }] }
 })
 
 export default mongoose.model<RecipientDocument>('Recipient', RecipientSchema);
