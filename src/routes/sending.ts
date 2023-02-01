@@ -1,5 +1,5 @@
 import express from 'express'
-import { postSending, todoController } from '../controllers/sending'
+import { postSending } from '../controllers/sending'
 import { keycloak } from '../config/keycloak'
 
 const router = express.Router()
