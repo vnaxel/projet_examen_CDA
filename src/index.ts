@@ -12,10 +12,10 @@ const app: Express = express()
 mongoose.connect(`${process.env.MONGO_URI}`, {
     dbName: 'sendings',
     autoIndex: true,
-    autoCreate: true
+    autoCreate: true,
 })
-.then(() => console.log('Connexion à MongoDB réussie !'))
-.catch(() => console.log('Connexion à MongoDB échouée !'))
+.then(() => console.log('⚡ Connexion à MongoDB réussie ! ⚡'))
+.catch(() => console.log('💧 Connexion à MongoDB échouée ! 💧'))
 
 app.use(express.json())
 app.use(appSession)
@@ -28,5 +28,5 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/todo', todoRouter)
 
 app.listen(process.env.PORT, () => {
-    console.log(`listening: http://localhost:${process.env.PORT}`)
+    console.log(`⚡ Le serveur est up: http://localhost:${process.env.PORT} ⚡`)
 });
