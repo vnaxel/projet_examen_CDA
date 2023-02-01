@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose';
-import { RecipientDocument, RecipientSchema } from './recipient';
+import mongoose, { Schema } from 'mongoose';
+import { RecipientDocument } from './recipient';
 
-export interface SendingDocument extends Document {
+export interface SendingDocument extends mongoose.Document {
     _id: any;
     senderId: string;
     letter: string;

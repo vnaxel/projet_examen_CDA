@@ -1,7 +1,7 @@
-import mongoose, { ObjectId } from 'mongoose';
-const { Schema } = mongoose;
+import mongoose, { Schema } from 'mongoose';
 
-export interface RecipientDocument extends Document {
+
+export interface RecipientDocument extends mongoose.Document {
     _id: any;
     sendingId: string;
     address: string;

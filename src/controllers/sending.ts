@@ -34,5 +34,13 @@ export const postSending = async (req: Request, res: Response) => {
 }
 
 export const updateRecipientDeliveryStatusesByRecipientId = async (req: Request, res: Response) => {
+    
+
+}
+
+export const getAllSendings = async (req: Request, res: Response) => {
+    
+    const sending = await Sending.find({}).populate('recipients')
+    res.status(200).json({ sending })
 
 }
