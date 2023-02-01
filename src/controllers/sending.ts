@@ -12,8 +12,18 @@ export const postSending = async (req: Request, res: Response) => {
     const sending = new Sending({
         ...req.body.sending, senderId
     })
-    sending.recipients.forEach(recipient => recipient.set({ sendingId: recipient.parent()._id ,deliveryStatuses: {lastStatus:  { status: 'CREATED'}}}))
+    sending.recipients.forEach(recipient => {
+        sending._id
+        recipient.deliveryStatuses = {
+            lastStatus: { status: 'CREATED', date: new Date() },
+            statuses: []
+        }
+    })
     sending.save()
         .then(() => res.status(201).json(sending))
         .catch(error => res.status(400).json(error))
+}
+
+export const updateRecipientDeliveryStatusesByRecipientId = async (req: Request, res: Response) => {
+
 }

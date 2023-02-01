@@ -1,9 +1,11 @@
 import express from 'express'
-import { postSending } from '../controllers/sending'
+import { postSending, updateRecipientDeliveryStatusesByRecipientId } from '../controllers/sending'
 import { keycloak } from '../config/keycloak'
 
 const router = express.Router()
 
 router.post('/', keycloak.protect(), postSending)
 
-export { router as todoRouter }
+router.patch('/:id', keycloak.protect(), updateRecipientDeliveryStatusesByRecipientId)
+
+export { router as sendingRouter}

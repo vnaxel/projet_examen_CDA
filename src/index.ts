@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv';
 import { appSession } from './config/memoryStore';
 import { keycloak } from './config/keycloak';
-import { todoRouter } from './routes/sending';
+import { sendingRouter } from './routes/sending';
 import mongoose from 'mongoose'
 
 
@@ -22,10 +22,10 @@ app.use(appSession)
 app.use(keycloak.middleware())
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server')
+    res.send('Express + TypeScript Server root path')
 });
 
-app.use('/todo', todoRouter)
+app.use('/sending', sendingRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`⚡ Le serveur est up: http://localhost:${process.env.PORT} ⚡`)
