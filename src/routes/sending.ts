@@ -8,6 +8,6 @@ router.post('/', keycloak.protect(), postSending)
 
 router.patch('/:id', keycloak.protect(), updateRecipientDeliveryStatusesByRecipientId)
 
-// router.get('/', keycloak.protect(), getAllSendings) // NOT A VALID ROUTE (ONLY FOR DEV PURPOSES)
+router.get('/', keycloak.protect(), getAllSendings) // NOT A VALID ROUTE (ONLY FOR DEV PURPOSES)
 
 export { router as sendingRouter}

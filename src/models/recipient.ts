@@ -4,6 +4,7 @@ import mongoose, { Schema } from 'mongoose';
 export interface RecipientDocument extends mongoose.Document {
     _id: any;
     sendingId: string;
+    senderName: string;
     address: string;
     firstName: string;
     lastName: string;
@@ -12,6 +13,7 @@ export interface RecipientDocument extends mongoose.Document {
 
 export const RecipientSchema = new Schema({
     sendingId: String,
+    senderName: String,
     address: String,
     firstName: String,
     lastName: String,

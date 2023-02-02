@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { keycloak } from "../config/keycloak"
-import Recipient from "../models/recipient"
+import Recipient, { RecipientDocument } from "../models/recipient"
 import Sending from "../models/sending"
 import { User } from "../models/User"
 
@@ -8,17 +8,20 @@ export const postSending = async (req: Request, res: Response) => {
 
     const grant = await keycloak.getGrant(req, res)
     const userInfos: User = await keycloak.grantManager.userInfo(grant.access_token!!)
-    const senderId = userInfos.sub
     const sending = await new Sending({
-        senderId,
+        senderId: userInfos.sub,
+        senderName: userInfos.name,
+        senderCompany: userInfos.company,
+        senderAddress: userInfos.userAddress,
         letter: req.body.sending.letter,
         date: req.body.sending.date
     }).save()
 
     await Promise.all(
-        req.body.sending.recipients.map(async (recipient: any) => {
+        req.body.sending.recipients.map(async (recipient: RecipientDocument) => {
             const recipt = await new Recipient({
                 sendingId: sending._id,
+                senderName: userInfos.name,
                 address: recipient.address,
                 firstName: recipient.firstName,
                 lastName: recipient.lastName,
@@ -39,6 +42,10 @@ export const updateRecipientDeliveryStatusesByRecipientId = async (req: Request,
 }
 
 export const getAllSendings = async (req: Request, res: Response) => {
+
+    const grant = await keycloak.getGrant(req, res)
+    const userInfos: User = await keycloak.grantManager.userInfo(grant.access_token!!)
+    console.log(userInfos)
     
     const sending = await Sending.find({}).populate('recipients')
     res.status(200).json({ sending })
