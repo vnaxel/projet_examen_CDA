@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
 import { keycloak } from "../config/keycloak"
-import Recipient, { RecipientDocument } from "../models/recipient"
+import Recipient, { RecipientDocument, Statuses } from "../models/recipient"
 import Sending from "../models/sending"
-import { User } from "../models/User"
+import { User } from "../models/user"
 
 export const postSending = async (req: Request, res: Response) => {
 
@@ -26,7 +26,7 @@ export const postSending = async (req: Request, res: Response) => {
                 firstName: recipient.firstName,
                 lastName: recipient.lastName,
                 deliveryStatuses: {
-                    lastStatus: { status: "CREATED", date: Date.now() }, statuses: [] },
+                    lastStatus: { status: Statuses.CREATED, date: Date.now() }, statusesHistory: [] },
             }).save();
             sending.recipients.push(recipt)
         })
@@ -37,17 +37,22 @@ export const postSending = async (req: Request, res: Response) => {
 }
 
 export const updateRecipientDeliveryStatusesByRecipientId = async (req: Request, res: Response) => {
+            
+        const recipient = await Recipient.findById(req.params.id)
+        if (recipient) {
+            recipient.deliveryStatuses.statusesHistory.unshift(recipient.deliveryStatuses.lastStatus)
+            recipient.deliveryStatuses.lastStatus.status = req.body.status
+            recipient.deliveryStatuses.lastStatus.date = new Date(Date.now())
+            await recipient.save().then(() => res.status(200).json({ recipient }))
+        } else {
+            res.status(404).json({ message: "Recipient not found" })
+        }
     
-
 }
 
 export const getAllSendings = async (req: Request, res: Response) => {
 
-    const grant = await keycloak.getGrant(req, res)
-    const userInfos: User = await keycloak.grantManager.userInfo(grant.access_token!!)
-    console.log(userInfos)
-    
-    const sending = await Sending.find({}).populate('recipients')
-    res.status(200).json({ sending })
+    const sendings = await Sending.find({}).populate('recipients')
+    res.status(200).json({ sendings })
 
 }
