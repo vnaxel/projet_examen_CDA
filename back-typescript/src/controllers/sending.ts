@@ -8,6 +8,7 @@ export const postSending = async (req: Request, res: Response) => {
 
     const grant = await keycloak.getGrant(req, res)
     const userInfos: User = await keycloak.grantManager.userInfo(grant.access_token!!)
+    
     const sending = await new Sending({
         senderId: userInfos.sub,
         senderName: userInfos.name,
