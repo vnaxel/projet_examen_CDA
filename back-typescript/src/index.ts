@@ -12,7 +12,7 @@ const app: Express = express()
 mongoose.connect(`${process.env.MONGO_URI}`, {
     dbName: 'sendings',
     autoIndex: true,
-    autoCreate: true,
+    autoCreate: true
 })
 .then(() => console.log('⚡ Connexion à MongoDB réussie ! ⚡'))
 .catch(() => console.log('💧 Connexion à MongoDB échouée ! 💧'))

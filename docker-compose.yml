@@ -9,9 +9,8 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     command: start-dev
   mongodb:
-    image: mongo:latest
+    image: davybello/mongo-replica-set:5.0.12
     ports:
       - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
+      - 27018:27018
+      - 27019:27019
