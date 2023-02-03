@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"math/rand"
+    "time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -33,7 +35,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(changeEvent["fullDocument"].(map[string]interface{})["deliveryStatuses"].(map[string]interface{}))
+		go produceAndDeliver(changeEvent)
 	}
 
 	if err := stream.Err(); err != nil {
@@ -43,5 +45,7 @@ func main() {
 }
 
 func produceAndDeliver(event map[string]interface{}) {
-	
+	duration := time.Duration(rand.Intn(20-10+1) + 10) * time.Second
+	time.Sleep(duration)
+	fmt.Println(event["fullDocument"].(map[string]interface{})["deliveryStatuses"].(map[string]interface{}))
 }
