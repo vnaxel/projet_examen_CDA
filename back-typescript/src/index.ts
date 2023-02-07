@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { appSession } from './config/memoryStore';
 import { keycloak } from './config/keycloak';
 import { sendingRouter } from './routes/sending';
+import { consumeDeliveries } from './services/deliveriesServices'
 import mongoose from 'mongoose'
 
 
@@ -20,6 +21,7 @@ mongoose.connect(`${process.env.MONGO_URI}`, {
 app.use(express.json())
 app.use(appSession)
 app.use(keycloak.middleware())
+consumeDeliveries()
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server root path')
