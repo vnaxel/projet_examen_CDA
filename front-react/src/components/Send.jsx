@@ -17,6 +17,10 @@ const Send = () => {
     const buildAndSend = async () => {
         if (!letter.length) {setLetterTouched(true)}
         if (!letter.length) {return}
+        if (!recipients.length) {
+            alert("Vous devez ajouter au moins un destinataire");
+            return
+        }
 
         const body = {
             "sending" : {
@@ -24,11 +28,24 @@ const Send = () => {
                 "recipients" : recipients
             }
         }
-        console.log(body)
 
         fetch("http://localhost:3001/sending", {method: "POST", body: JSON.stringify(body), headers: {"authorization": "Bearer " + keycloak.token, "Content-Type": "application/json"}})
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.sending._id) {
+                    alert("La lettre va être produite puis envoyée aux destinataire(s) : " + recipients.map(rcp => rcp.firstName + " " + rcp.lastName).join(", "));
+                    setLetter("");
+                    setLetterTouched(false);
+                    setFirstNameTouched(false);
+                    setLastNameTouched(false);
+                    setStreetTouched(false);
+                    setCityTouched(false);
+                    setZipCodeTouched(false);
+                    setRecipients([]);
+                } else {
+                    alert("Une erreur est survenue lors de l'envoi de la lettre");
+                }
+            })
         
     }
 
@@ -228,22 +245,20 @@ const Send = () => {
                                 setLetter(e.target.value)
                                 setLetterTouched(true)
                             }}
+                            value={letter}
                             id="letter"
                             label="Envoi de message"
                             multiline
                             style={{ width: "100%" }}
                             rows={20}
                             variant="standard"
+                            error={letterTouched && letter.trim().length === 0}
+                            helperText={
+                                letterTouched && !letter.trim().length ? "La lettre ne doit pas être vide" : ""
+                            }
                         />
                     </Box>
                     <Box className="send__submit">
-                        <Button
-                            variant="contained"
-                            color="error"
-                            style={{ width: "5rem" }}
-                        >
-                            Cancel
-                        </Button>
                         <Button onClick={() => buildAndSend()} variant="contained" style={{ width: "5rem" }}>
                             Send
                         </Button>

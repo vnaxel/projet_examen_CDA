@@ -14,15 +14,11 @@ const Nav = () => {
         <Toolbar>
             <Button color="inherit" className="btn"><Link to="/">Home</Link></Button>
             <Button color="inherit" className="btn"><Link to="/send">Envoi</Link></Button>
-            <Button color="inherit" className="btn">Suivi</Button>
+            <Button color="inherit" className="btn"><Link to="/tracking">Suivi</Link></Button>
             <Typography
                 variant="h6"
                 component="div"
-                sx={{
-                    flexGrow: 1,
-                    textAlign: "center",
-                    fontSize: "1.5rem",
-                }}
+                className="title"
             >
                 {!!keycloak.authenticated && keycloak.tokenParsed.preferred_username + '@SendingApp'}
             </Typography>

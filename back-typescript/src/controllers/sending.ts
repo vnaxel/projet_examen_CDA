@@ -52,9 +52,12 @@ export const updateRecipientDeliveryStatusesByRecipientId = async (req: Request,
     
 }
 
-export const getAllSendings = async (req: Request, res: Response) => {
+export const getAllUserSendingsByUserId = async (req: Request, res: Response) => {
 
-    const sendings = await Sending.find({}).populate('recipients')
-    res.status(200).json({ sendings })
-
+    const sendings = await Sending.find({ senderId: req.params.id }).populate('recipients')
+    if (sendings) {
+        res.status(200).json({ sendings })
+    } else {
+        res.status(404).json({ message: "No sending found" })
+    }
 }

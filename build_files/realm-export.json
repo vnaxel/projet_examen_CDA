@@ -1,6 +1,6 @@
 {
   "id": "DBL-PPRO",
-  "realm": "DBL-PPRO",
+  "realm": "Examen-CDA",
   "notBefore": 1675952945,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -471,13 +471,13 @@
       "clientId": "account",
       "name": "${client_account}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/DBL-PPRO/account/",
+      "baseUrl": "/realms/Examen-CDA/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/DBL-PPRO/account/*"
+        "/realms/Examen-CDA/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -607,17 +607,18 @@
       "description": "",
       "rootUrl": "",
       "adminUrl": "",
-      "baseUrl": "http://localhost:3000",
+      "baseUrl": "http://localhost:3001",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
       "redirectUris": [
-        "http://localhost:3000/*"
+        "http://localhost:3001/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
-      "bearerOnly": true,
+      "bearerOnly": false,
       "consentRequired": false,
       "standardFlowEnabled": true,
       "implicitFlowEnabled": false,
@@ -636,17 +637,17 @@
         "use.refresh.tokens": "true",
         "oidc.ciba.grant.enabled": "false",
         "backchannel.logout.session.required": "true",
-        "backchannel.logout.url": "http://localhost:3000",
+        "backchannel.logout.url": "http://localhost:3001",
         "client_credentials.use_refresh_token": "false",
         "require.pushed.authorization.requests": "false",
         "saml.client.signature": "false",
         "saml.allow.ecp.flow": "false",
         "id.token.as.detached.signature": "false",
         "saml.assertion.signature": "false",
-        "client.secret.creation.time": "1675194569",
+        "client.secret.creation.time": "1676324007",
         "saml.encrypt": "false",
         "login_theme": "keycloak",
-        "frontchannel.logout.url": "http://localhost:3000",
+        "frontchannel.logout.url": "http://localhost:3001",
         "saml.server.signature": "false",
         "exclude.session.state.from.auth.response": "false",
         "saml.artifact.binding": "false",
@@ -717,9 +718,9 @@
     {
       "id": "b9ad3af4-f5bf-477a-94e6-015b18c6af74",
       "clientId": "react-client",
-      "rootUrl": "http://localhost:3000/",
+      "rootUrl": "",
       "adminUrl": "",
-      "baseUrl": "http://localhost:3000/",
+      "baseUrl": "http://localhost:3000",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -728,7 +729,7 @@
         "http://localhost:3000/*"
       ],
       "webOrigins": [
-        "http://localhost:3000"
+        "+"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -830,13 +831,13 @@
       "clientId": "security-admin-console",
       "name": "${client_security-admin-console}",
       "rootUrl": "${authAdminUrl}",
-      "baseUrl": "/admin/DBL-PPRO/console/",
+      "baseUrl": "/admin/Examen-CDA/console/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/admin/DBL-PPRO/console/*"
+        "/admin/Examen-CDA/console/*"
       ],
       "webOrigins": [
         "+"
@@ -1456,14 +1457,14 @@
     "roles",
     "web-origins",
     "acr",
-    "userAddress"
+    "userAddress",
+    "company"
   ],
   "defaultOptionalClientScopes": [
     "offline_access",
     "address",
     "phone",
-    "microprofile-jwt",
-    "company"
+    "microprofile-jwt"
   ],
   "browserSecurityHeaders": {
     "contentSecurityPolicyReportOnly": "",
@@ -1493,21 +1494,6 @@
         "subType": "anonymous",
         "subComponents": {},
         "config": {}
-      },
-      {
-        "id": "67dbc0f6-dc11-4230-b547-3298b6ebe18e",
-        "name": "Trusted Hosts",
-        "providerId": "trusted-hosts",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {
-          "host-sending-registration-request-must-match": [
-            "true"
-          ],
-          "client-uris-must-match": [
-            "true"
-          ]
-        }
       },
       {
         "id": "e738ff54-8525-4588-9027-f03f13b77b3f",
@@ -1541,6 +1527,33 @@
         }
       },
       {
+        "id": "7cc190b6-e4d0-44f1-90e2-c6824a0a9cc9",
+        "name": "Allowed Client Scopes",
+        "providerId": "allowed-client-templates",
+        "subType": "authenticated",
+        "subComponents": {},
+        "config": {
+          "allow-default-scopes": [
+            "true"
+          ]
+        }
+      },
+      {
+        "id": "67dbc0f6-dc11-4230-b547-3298b6ebe18e",
+        "name": "Trusted Hosts",
+        "providerId": "trusted-hosts",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {
+          "host-sending-registration-request-must-match": [
+            "true"
+          ],
+          "client-uris-must-match": [
+            "true"
+          ]
+        }
+      },
+      {
         "id": "a0009e40-fb66-41c7-a4f5-bf0e230a0ece",
         "name": "Full Scope Disabled",
         "providerId": "scope",
@@ -1568,18 +1581,6 @@
         }
       },
       {
-        "id": "7cc190b6-e4d0-44f1-90e2-c6824a0a9cc9",
-        "name": "Allowed Client Scopes",
-        "providerId": "allowed-client-templates",
-        "subType": "authenticated",
-        "subComponents": {},
-        "config": {
-          "allow-default-scopes": [
-            "true"
-          ]
-        }
-      },
-      {
         "id": "624bdfb6-3dd6-4ce9-bdf2-1d68ba5e68c9",
         "name": "Max Clients Limit",
         "providerId": "max-clients",
@@ -1592,21 +1593,15 @@
         }
       }
     ],
-    "org.keycloak.keys.KeyProvider": [
+    "org.keycloak.userprofile.UserProfileProvider": [
       {
-        "id": "928d23ea-3e49-48da-b062-71a75d28b1b7",
-        "name": "hmac-generated",
-        "providerId": "hmac-generated",
+        "id": "ffcd03fd-51f4-450e-b3bd-9a1c71724120",
+        "providerId": "declarative-user-profile",
         "subComponents": {},
-        "config": {
-          "priority": [
-            "100"
-          ],
-          "algorithm": [
-            "HS256"
-          ]
-        }
-      },
+        "config": {}
+      }
+    ],
+    "org.keycloak.keys.KeyProvider": [
       {
         "id": "5c1a42d0-007e-488e-a4d6-edb900a01571",
         "name": "rsa-enc-generated",
@@ -1618,6 +1613,20 @@
           ],
           "algorithm": [
             "RSA-OAEP"
+          ]
+        }
+      },
+      {
+        "id": "928d23ea-3e49-48da-b062-71a75d28b1b7",
+        "name": "hmac-generated",
+        "providerId": "hmac-generated",
+        "subComponents": {},
+        "config": {
+          "priority": [
+            "100"
+          ],
+          "algorithm": [
+            "HS256"
           ]
         }
       },
@@ -2327,6 +2336,7 @@
     "oauth2DevicePollingInterval": "5",
     "clientOfflineSessionMaxLifespan": "0",
     "clientSessionIdleTimeout": "0",
+    "userProfileEnabled": "false",
     "parRequestUriLifespan": "60",
     "clientSessionMaxLifespan": "0",
     "clientOfflineSessionIdleTimeout": "0",
