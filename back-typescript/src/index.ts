@@ -4,6 +4,7 @@ import { appSession } from './config/memoryStore';
 import { keycloak } from './config/keycloak';
 import { sendingRouter } from './routes/sending';
 import { consumeDeliveries } from './services/deliveriesServices'
+import cors from 'cors';
 import mongoose from 'mongoose'
 
 
@@ -19,6 +20,9 @@ mongoose.connect(`${process.env.MONGO_URI}`, {
 .catch(() => console.log('💧 Connexion à MongoDB échouée ! 💧'))
 
 app.use(express.json())
+app.use(cors({
+    origin: ['http://localhost:3000','http://localhost:8080']
+}))
 app.use(appSession)
 app.use(keycloak.middleware())
 consumeDeliveries()

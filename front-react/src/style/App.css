@@ -1,0 +1,128 @@
+* {
+	padding: 0;
+	margin: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+	min-height: 100%;
+	min-width: 300px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(236, 236, 236)
+}
+
+.composant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+.composant:last-child {
+  margin-bottom: 1rem;
+}
+
+@media (width >= 1100px) {
+  .composant {
+    width: 70%;
+  }
+}
+
+@media (width >= 1350px) {
+  .composant {
+    width: 60%;
+  }
+}
+
+@media (width >= 1500px) {
+  .composant {
+    width: 50%;
+  }
+}
+
+.btn > a {
+  text-decoration: none;
+  color: white;
+}
+
+.paper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.recipient__input {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.recipient__input > * {
+  width: 100%;
+}
+
+@media (width <= 815px) {
+  .recipient__input {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .recipient__input {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.send {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 1rem;
+  width: 100%;
+}
+
+.formControl > * {
+  width: 100%;
+}
+
+.appBar {
+  margin-bottom: 1rem;
+}
+
+.send__input {
+  margin-bottom: 1rem;
+}
+
+.send__submit {
+  display: flex;
+  justify-content: right;
+}
+
+.send__submit > button {
+  margin-left: 1rem;
+}
+
+h1 {
+  margin: 0;
+}
