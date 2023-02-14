@@ -1,6 +1,6 @@
-import TrackingRcpt from "./TrackingRcpt";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
+import TrackingRcpt from "./TrackingRcpt"
+import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box"
 
 const Sending = ({ sending }) => {
     return (
@@ -12,7 +12,7 @@ const Sending = ({ sending }) => {
                 ))}
             </Box>
         </Paper>
-    );
-};
+    )
+}
 
-export default Sending;
+export default Sending

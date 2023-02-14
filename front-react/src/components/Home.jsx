@@ -1,5 +1,5 @@
-import { Paper } from "@mui/material";
-import React from "react";
+import { Paper } from "@mui/material"
+import React from "react"
 
 const Home = () => {
     return (
@@ -34,9 +34,9 @@ const Home = () => {
                 </p>
                 <br />
                 <p>
-                    Ces evenements kafka sont consommés par le backend typscript qui
-                    se charge de mettre à jour la base de donnée et de notifier le frontend via une connexion
-                    websocket.
+                    Ces evenements kafka sont consommés par le backend typscript
+                    qui se charge de mettre à jour la base de donnée et de
+                    notifier le frontend via une connexion websocket.
                 </p>
                 <br />
                 <p>Le projet est composé de 3 applications :</p>
@@ -76,11 +76,12 @@ const Home = () => {
                     Le code du projet est disponible sur{" "}
                     <a href="https://github.com/vnaxel/projet_examen_CDA">
                         Github
-                    </a>.
+                    </a>
+                    .
                 </p>
             </Paper>
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

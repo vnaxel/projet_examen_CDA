@@ -1,13 +1,13 @@
-import "../style/App.css";
-import * as React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ReactKeycloakProvider } from "@react-keycloak/web";
-import keycloak from "./keycloak";
-import Home from "./Home";
-import Tracking from "./Tracking";
-import CreateSending from "./CreateSending";
-import Nav from "./Nav";
-import PrivateRoute from "../helpers/PrivateRoute";
+import "../style/App.css"
+import * as React from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { ReactKeycloakProvider } from "@react-keycloak/web"
+import keycloak from "./keycloak"
+import Home from "./Home"
+import Tracking from "./Tracking"
+import CreateSending from "./CreateSending"
+import Nav from "./Nav"
+import PrivateRoute from "../helpers/PrivateRoute"
 
 const App = () => {
     return (
@@ -15,7 +15,7 @@ const App = () => {
             <React.StrictMode>
                 <div className="app">
                     <BrowserRouter>
-                    <Nav />
+                        <Nav />
                         <Routes>
                             <Route exact path="/" element={<Home />} />
                             <Route
@@ -39,7 +39,7 @@ const App = () => {
                 </div>
             </React.StrictMode>
         </ReactKeycloakProvider>
-    );
-};
+    )
+}
 
-export default App;
+export default App

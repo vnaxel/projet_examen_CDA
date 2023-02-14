@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
-import Recipient from "./Recipient";
-import { useKeycloak } from "@react-keycloak/web";
+import React, { useState } from "react"
+import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
+import Paper from "@mui/material/Paper"
+import { Box } from "@mui/system"
+import { Typography } from "@mui/material"
+import Recipient from "./Recipient"
+import { useKeycloak } from "@react-keycloak/web"
 
 const CreateSending = () => {
-    const { keycloak } = useKeycloak();
+    const { keycloak } = useKeycloak()
 
-    const [letter, setLetter] = useState("");
-    const [letterTouched, setLetterTouched] = useState(false);
+    const [letter, setLetter] = useState("")
+    const [letterTouched, setLetterTouched] = useState(false)
 
     const buildAndSend = async () => {
         if (!letter.length) {
-            setLetterTouched(true);
+            setLetterTouched(true)
         }
         if (!letter.length) {
-            return;
+            return
         }
         if (!recipients.length) {
-            alert("Vous devez ajouter au moins un destinataire");
-            return;
+            alert("Vous devez ajouter au moins un destinataire")
+            return
         }
 
         const body = {
@@ -30,7 +30,7 @@ const CreateSending = () => {
                 letter: letter,
                 recipients: recipients,
             },
-        };
+        }
 
         fetch("http://localhost:3001/sending", {
             method: "POST",
@@ -40,63 +40,61 @@ const CreateSending = () => {
                 "Content-Type": "application/json",
             },
         })
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
                 if (data.sending._id) {
                     alert(
                         "La lettre va être produite puis envoyée aux destinataire(s) : " +
                             recipients
-                                .map(
-                                    (rcp) => rcp.firstName + " " + rcp.lastName
-                                )
+                                .map(rcp => rcp.firstName + " " + rcp.lastName)
                                 .join(", ")
-                    );
-                    setLetter("");
-                    setLetterTouched(false);
-                    setFirstNameTouched(false);
-                    setLastNameTouched(false);
-                    setStreetTouched(false);
-                    setCityTouched(false);
-                    setZipCodeTouched(false);
-                    setRecipients([]);
+                    )
+                    setLetter("")
+                    setLetterTouched(false)
+                    setFirstNameTouched(false)
+                    setLastNameTouched(false)
+                    setStreetTouched(false)
+                    setCityTouched(false)
+                    setZipCodeTouched(false)
+                    setRecipients([])
                 } else {
                     alert(
                         "Une erreur est survenue lors de l'envoi de la lettre"
-                    );
+                    )
                 }
-            });
-    };
+            })
+    }
 
-    const [lastNameTouched, setLastNameTouched] = useState(false);
-    const [firstNameTouched, setFirstNameTouched] = useState(false);
-    const [streetTouched, setStreetTouched] = useState(false);
-    const [cityTouched, setCityTouched] = useState(false);
-    const [zipCodeTouched, setZipCodeTouched] = useState(false);
+    const [lastNameTouched, setLastNameTouched] = useState(false)
+    const [firstNameTouched, setFirstNameTouched] = useState(false)
+    const [streetTouched, setStreetTouched] = useState(false)
+    const [cityTouched, setCityTouched] = useState(false)
+    const [zipCodeTouched, setZipCodeTouched] = useState(false)
 
-    const [lastName, setLastName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [street, setStreet] = useState("");
-    const [city, setCity] = useState("");
-    const [zipCode, setZipCode] = useState("");
+    const [lastName, setLastName] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [street, setStreet] = useState("")
+    const [city, setCity] = useState("")
+    const [zipCode, setZipCode] = useState("")
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         if (!lastName.length) {
-            setLastNameTouched(true);
+            setLastNameTouched(true)
         }
         if (!firstName.length) {
-            setFirstNameTouched(true);
+            setFirstNameTouched(true)
         }
         if (!street.length) {
-            setStreetTouched(true);
+            setStreetTouched(true)
         }
         if (!city.length) {
-            setCityTouched(true);
+            setCityTouched(true)
         }
         if (!zipCode.length) {
-            setZipCodeTouched(true);
+            setZipCodeTouched(true)
         }
         if (!zipCode.match(/^[0-9]{5}$/)) {
-            setZipCodeTouched(true);
+            setZipCodeTouched(true)
         }
         if (
             !lastName.length ||
@@ -106,7 +104,7 @@ const CreateSending = () => {
             !zipCode.length ||
             !zipCode.match(/^[0-9]{5}$/)
         ) {
-            return;
+            return
         }
 
         setRecipients([
@@ -123,21 +121,21 @@ const CreateSending = () => {
                     city.charAt(0).toUpperCase() +
                     city.slice(1),
             },
-        ]);
+        ])
 
-        setFirstName("");
-        setLastName("");
-        setStreet("");
-        setCity("");
-        setZipCode("");
-        setFirstNameTouched(false);
-        setLastNameTouched(false);
-        setStreetTouched(false);
-        setCityTouched(false);
-        setZipCodeTouched(false);
-    };
+        setFirstName("")
+        setLastName("")
+        setStreet("")
+        setCity("")
+        setZipCode("")
+        setFirstNameTouched(false)
+        setLastNameTouched(false)
+        setStreetTouched(false)
+        setCityTouched(false)
+        setZipCodeTouched(false)
+    }
 
-    const [recipients, setRecipients] = useState([]);
+    const [recipients, setRecipients] = useState([])
 
     const listRecipients = recipients.map((rcp, i) => (
         <Recipient
@@ -146,7 +144,7 @@ const CreateSending = () => {
             setRecipients={setRecipients}
             key={i}
         />
-    ));
+    ))
 
     return (
         <div className="composant">
@@ -158,8 +156,7 @@ const CreateSending = () => {
                         sx={{
                             flexGrow: 1,
                             fontSize: "1.2rem",
-                        }}
-                    >
+                        }}>
                         Ajoutez un destinataire
                     </Typography>
                     <Box className="recipient__input" component="form">
@@ -168,9 +165,9 @@ const CreateSending = () => {
                                 id="lastName"
                                 label="Nom"
                                 value={lastName}
-                                onChange={(e) => {
-                                    setLastName(e.target.value);
-                                    setLastNameTouched(true);
+                                onChange={e => {
+                                    setLastName(e.target.value)
+                                    setLastNameTouched(true)
                                 }}
                                 error={
                                     lastNameTouched &&
@@ -189,9 +186,9 @@ const CreateSending = () => {
                                 id="firstName"
                                 label="Prénom"
                                 value={firstName}
-                                onChange={(e) => {
-                                    setFirstName(e.target.value);
-                                    setFirstNameTouched(true);
+                                onChange={e => {
+                                    setFirstName(e.target.value)
+                                    setFirstNameTouched(true)
                                 }}
                                 error={
                                     firstNameTouched &&
@@ -210,9 +207,9 @@ const CreateSending = () => {
                                 id="street"
                                 label="Adresse"
                                 value={street}
-                                onChange={(e) => {
-                                    setStreet(e.target.value);
-                                    setStreetTouched(true);
+                                onChange={e => {
+                                    setStreet(e.target.value)
+                                    setStreetTouched(true)
                                 }}
                                 error={
                                     streetTouched && street.trim().length === 0
@@ -230,9 +227,9 @@ const CreateSending = () => {
                                 id="city"
                                 label="Ville"
                                 value={city}
-                                onChange={(e) => {
-                                    setCity(e.target.value);
-                                    setCityTouched(true);
+                                onChange={e => {
+                                    setCity(e.target.value)
+                                    setCityTouched(true)
                                 }}
                                 error={cityTouched && city.trim().length === 0}
                                 helperText={
@@ -248,9 +245,9 @@ const CreateSending = () => {
                                 id="zipCode"
                                 label="Code postal"
                                 value={zipCode}
-                                onChange={(e) => {
-                                    setZipCode(e.target.value);
-                                    setZipCodeTouched(true);
+                                onChange={e => {
+                                    setZipCode(e.target.value)
+                                    setZipCodeTouched(true)
                                 }}
                                 error={
                                     zipCodeTouched &&
@@ -284,8 +281,7 @@ const CreateSending = () => {
                             sx={{
                                 flexGrow: 1,
                                 fontSize: "1.2rem",
-                            }}
-                        >
+                            }}>
                             Destinataires
                         </Typography>
                         <Box className="recipientList__list">
@@ -298,14 +294,13 @@ const CreateSending = () => {
                 className="send"
                 component="form"
                 noValidate
-                autoComplete="off"
-            >
+                autoComplete="off">
                 <Box className="card">
                     <Box className="send__input">
                         <TextField
-                            onChange={(e) => {
-                                setLetter(e.target.value);
-                                setLetterTouched(true);
+                            onChange={e => {
+                                setLetter(e.target.value)
+                                setLetterTouched(true)
                             }}
                             value={letter}
                             id="letter"
@@ -326,15 +321,14 @@ const CreateSending = () => {
                         <Button
                             onClick={() => buildAndSend()}
                             variant="contained"
-                            style={{ width: "5rem" }}
-                        >
+                            style={{ width: "5rem" }}>
                             Send
                         </Button>
                     </Box>
                 </Box>
             </Paper>
         </div>
-    );
-};
+    )
+}
 
-export default CreateSending;
+export default CreateSending
