@@ -45,23 +45,6 @@ export const postSending = async (req: Request, res: Response) => {
     await sending.save().then(() => res.status(201).json({ sending }))
 }
 
-export const updateRecipientDeliveryStatusesByRecipientId = async (
-    req: Request,
-    res: Response
-) => {
-    const recipient = await Recipient.findById(req.params.id)
-    if (recipient) {
-        recipient.deliveryStatuses.statusesHistory.unshift(
-            recipient.deliveryStatuses.lastStatus
-        )
-        recipient.deliveryStatuses.lastStatus.status = req.body.status
-        recipient.deliveryStatuses.lastStatus.date = new Date(Date.now())
-        await recipient.save().then(() => res.status(200).json({ recipient }))
-    } else {
-        res.status(404).json({ message: "Recipient not found" })
-    }
-}
-
 export const getAllUserSendingsByUserId = async (
     req: Request,
     res: Response

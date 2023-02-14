@@ -29,7 +29,7 @@ export const enum Statuses {
     CREATED = "CREATED",
     PRODUCED = "PRODUCED",
     DELIVERED = "DELIVERED",
-    ADDRESS_INVALID = "ADDRESS_INVALID",
+    ADDRESS_INVALID = "NOT_FOUND",
 }
 
 export default mongoose.model<RecipientDocument>("Recipient", RecipientSchema)

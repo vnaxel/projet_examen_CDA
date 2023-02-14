@@ -3,16 +3,9 @@ import React, { useEffect, useState } from "react"
 import LinearProgress from "@mui/material/LinearProgress"
 import Sending from "./Sending"
 import Paper from "@mui/material/Paper"
-import { io } from "socket.io-client"
 
 const Tracking = () => {
     const { keycloak } = useKeycloak()
-
-    const socket = io("http://localhost:3001")
-    socket.on("deliveryEvent", sendingId => {
-        if (data && data.sendings.map(sending => sending._id === sendingId))
-            fetchDatas()
-    })
 
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -33,9 +26,10 @@ const Tracking = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            // simulate a delay
-            fetchDatas()
+        setTimeout(() => { // simulate a delay to enjoy MUI loading bar
+            setInterval(() => { // refresh every 1s
+                fetchDatas()
+            }, 1000)
         }, 1000)
     }, [])
 

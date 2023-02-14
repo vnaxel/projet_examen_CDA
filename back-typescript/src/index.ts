@@ -4,23 +4,14 @@ import { appSession } from "./config/memoryStore"
 import { keycloak } from "./config/keycloak"
 import { sendingRouter } from "./routes/sending"
 import { consumeDeliveries } from "./services/deliveriesServices"
-import { createServer } from "http"
-import { Server } from "socket.io"
 import cors from "cors"
 import mongoose from "mongoose"
 
 dotenv.config()
 const app: Express = express()
-const httpServer = createServer(app)
-
-export const io = new Server(httpServer, {
-    cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-    },
-})
 
 mongoose
+    .set('strictQuery', false)
     .connect(`${process.env.MONGO_URI}`, {
         dbName: "sendings",
         autoIndex: true,
@@ -45,6 +36,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/sending", sendingRouter)
 
-httpServer.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`⚡ Le serveur est up: http://localhost:${process.env.PORT} ⚡`)
 })
