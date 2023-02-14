@@ -1,14 +1,16 @@
-import mongoose, { Schema } from 'mongoose';
-
+import mongoose, { Schema } from "mongoose"
 
 export interface RecipientDocument extends mongoose.Document {
-    _id: any;
-    sendingId: string;
-    senderName: string;
-    address: string;
-    firstName: string;
-    lastName: string;
-    deliveryStatuses: { lastStatus: { status: string, date: Date }, statusesHistory: { status: string, date: Date }[]};
+    _id: any
+    sendingId: string
+    senderName: string
+    address: string
+    firstName: string
+    lastName: string
+    deliveryStatuses: {
+        lastStatus: { status: string; date: Date }
+        statusesHistory: { status: string; date: Date }[]
+    }
 }
 
 export const RecipientSchema = new Schema({
@@ -17,7 +19,10 @@ export const RecipientSchema = new Schema({
     address: String,
     firstName: String,
     lastName: String,
-    deliveryStatuses: { lastStatus: { status: String, date: Date }, statusesHistory: [{ status: String, date: Date }] }
+    deliveryStatuses: {
+        lastStatus: { status: String, date: Date },
+        statusesHistory: [{ status: String, date: Date }],
+    },
 })
 
 export const enum Statuses {
@@ -27,4 +32,4 @@ export const enum Statuses {
     ADDRESS_INVALID = "ADDRESS_INVALID",
 }
 
-export default mongoose.model<RecipientDocument>('Recipient', RecipientSchema);
+export default mongoose.model<RecipientDocument>("Recipient", RecipientSchema)
