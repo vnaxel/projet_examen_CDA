@@ -5,7 +5,7 @@ import { ReactKeycloakProvider } from "@react-keycloak/web";
 import keycloak from "./keycloak";
 import Home from "./Home";
 import Tracking from "./Tracking";
-import Send from "./Send";
+import CreateSending from "./CreateSending";
 import Nav from "./Nav";
 import PrivateRoute from "../helpers/PrivateRoute";
 
@@ -22,7 +22,7 @@ const App = () => {
                                 path="/send"
                                 element={
                                     <PrivateRoute>
-                                        <Send />
+                                        <CreateSending />
                                     </PrivateRoute>
                                 }
                             />

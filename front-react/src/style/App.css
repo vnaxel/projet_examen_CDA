@@ -169,3 +169,56 @@ body {
 h1 {
   margin: 0;
 }
+
+.tracking__recipient {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.tracking__recipient svg {
+  margin-left: 1.5rem;
+  font-size: 2rem;
+}
+
+@media (width <= 600px) {
+  .tracking__recipient {
+    font-size: .6rem;
+  }
+
+  .tracking__recipient svg {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+}
+
+.tracking__recipient__name {
+  width: 25%;
+}
+
+.tracking__recipient__lastStatus {
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  width: 25%;
+}
+
+.tracking__recipient__lastStatus > p {
+  max-width: 6rem;
+}
+
+.tracking__recipient__status {
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  width: 25%;
+}
+
+.tracking__recipient__status > p {
+  max-width: 6rem;
+}
+
+.text-center {
+  justify-content: center;
+}

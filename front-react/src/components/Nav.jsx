@@ -20,7 +20,7 @@ const Nav = () => {
                 component="div"
                 className="title"
             >
-                {!!keycloak.authenticated && keycloak.tokenParsed.preferred_username + '@SendingApp'}
+                {!!keycloak.authenticated && 'Outil d\'envois - ' + keycloak.tokenParsed.preferred_username}
             </Typography>
             {!keycloak.authenticated && (
                 <Button
