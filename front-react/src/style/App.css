@@ -26,6 +26,31 @@ body {
   background-color: rgb(236, 236, 236)
 }
 
+.logo {
+  color: white;
+  height: 4rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 1.5rem;
+}
+
+.inline {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.inline > div {
+  margin: 0 .7rem 0 0;
+}
+
 .homePaper {
   display: flex;
   flex-direction: column;
@@ -141,13 +166,8 @@ body {
   margin-bottom: 1rem;
 }
 
-.title {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 1.5rem;
-}
 
-@media (width <= 600px) {
+@media (width <= 500px) {
   .title {
     display: none;
   }

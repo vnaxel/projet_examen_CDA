@@ -35,8 +35,9 @@ const Home = () => {
                 <br />
                 <p>
                     Ces evenements kafka sont consommés par le backend typscript
-                    qui se charge de mettre à jour la base de donnée et de
-                    notifier le frontend via une connexion websocket.
+                    qui se charge de mettre à jour la base de donnée. Le
+                    frontend actualise l'affichage des status toutes les
+                    secondes.
                 </p>
                 <br />
                 <p>Le projet est composé de 3 applications :</p>

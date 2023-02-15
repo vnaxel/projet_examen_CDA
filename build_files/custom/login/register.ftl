@@ -78,7 +78,7 @@
 
             <div class="${properties.kcFormGroupClass!}">
                 <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="user.attributes.company" class="${properties.kcLabelClass!}">${msg("Company")}</label>
+                    <label for="user.attributes.company" class="${properties.kcLabelClass!}">${msg("Entreprise")}</label>
                 </div>
                 <div class="${properties.kcInputWrapperClass!}">
                     <input type="text" id="user.attributes.company" class="${properties.kcInputClass!}" name="user.attributes.company"

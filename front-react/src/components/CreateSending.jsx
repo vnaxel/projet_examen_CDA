@@ -1,9 +1,16 @@
 import React, { useState } from "react"
-import Button from "@mui/material/Button"
-import TextField from "@mui/material/TextField"
-import Paper from "@mui/material/Paper"
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+import { Link } from "react-router-dom"
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Typography,
+    Button,
+    TextField,
+    Paper,
+} from "@mui/material"
 import Recipient from "./Recipient"
 import { useKeycloak } from "@react-keycloak/web"
 
@@ -12,6 +19,14 @@ const CreateSending = () => {
 
     const [letter, setLetter] = useState("")
     const [letterTouched, setLetterTouched] = useState(false)
+
+    const [dialogOpen, setDialogOpen] = useState(false)
+    const [dialogRcpts, setDialogRcpts] = useState([])
+
+    const handleCloseDialog = () => {
+        setDialogOpen(false)
+        setDialogRcpts([])
+    }
 
     const buildAndSend = async () => {
         if (!letter.length) {
@@ -43,12 +58,8 @@ const CreateSending = () => {
             .then(response => response.json())
             .then(data => {
                 if (data.sending._id) {
-                    alert(
-                        "La lettre va être produite puis envoyée aux destinataire(s) : " +
-                            recipients
-                                .map(rcp => rcp.firstName + " " + rcp.lastName)
-                                .join(", ")
-                    )
+                    setDialogOpen(true)
+                    setDialogRcpts(recipients)
                     setLetter("")
                     setLetterTouched(false)
                     setFirstNameTouched(false)
@@ -148,6 +159,23 @@ const CreateSending = () => {
 
     return (
         <div className="composant">
+            <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+                <DialogTitle>Envoyé</DialogTitle>
+                <DialogContent>
+                    La lettre va être produite puis envoyée au(x) destinataire(s)
+                    :
+                    {dialogRcpts.map((rcp, index) => (
+                        <li key={index}>
+                            {rcp.firstName + " " + rcp.lastName}
+                        </li>
+                    ))}
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="contained" className="btn">
+                        <Link to="/tracking">Aller au suivi</Link>
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <Paper className="paper">
                 <Box className="card">
                     <Typography
