@@ -247,6 +247,7 @@ div.kc-logo-text span {
     letter-spacing: 3px;
     line-height: 1.2em;
     white-space: normal;
+    margin: 0 0 0 -1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -508,10 +509,26 @@ ul#kc-totp-supported-apps {
     border-color: transparent black transparent transparent;
 }
 
+.hiddenOnFullScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 -1.2rem;
+}
+
 @media (min-width: 768px) {
+
+    .hiddenOnFullScreen {
+        display: none;
+    }
+
     #kc-container-wrapper {
         position: absolute;
         width: 100%;
+    }
+
+    .login-pf-page {
+        padding-bottom: 2rem;
     }
 
     .login-pf .container {
@@ -525,7 +542,20 @@ ul#kc-totp-supported-apps {
     }
 }
 
+.card-pf {
+    margin: 0 auto 0 auto !important;
+    margin-bottom: 2rem;
+    box-shadow: var(--pf-global--BoxShadow--lg);
+    padding: 1rem !important;
+    max-width: 500px;
+    border-radius: .3rem;
+}
+
 @media (max-width: 767px) {
+
+    .card-pf {
+        padding: 1.5rem !important;
+    }
 
     .login-pf body {
         background: white;
@@ -603,7 +633,6 @@ ul#kc-totp-supported-apps {
 
 .login-pf-page {
     padding-top: 0;
-    padding-bottom: 2rem;
 }
 
 .login-pf-page .login-pf-brand {
@@ -680,15 +709,6 @@ ul#kc-totp-supported-apps {
     text-align: center;
     font-size: var(--pf-global--FontSize--md);
     margin-bottom: 5px;
-}
-
-.card-pf {
-    margin: 0 auto 0 auto !important;
-    margin-bottom: 2rem;
-    box-shadow: var(--pf-global--BoxShadow--lg);
-    padding: 1rem !important;
-    max-width: 500px;
-    border-radius: .3rem;
 }
 
 /*phone*/

@@ -51,8 +51,6 @@ const CreateSending = () => {
     }
 
     const buildAndSend = async () => {
-
-
         const body = {
             sending: {
                 letter: letter,
@@ -202,10 +200,17 @@ const CreateSending = () => {
                     ))}
                 </DialogContent>
                 <DialogActions className="dialog__actions">
-                    <Button variant="contained" className="btn" color="error" onClick={handleCloseConfirmDialog}>
+                    <Button
+                        variant="contained"
+                        className="btn"
+                        color="error"
+                        onClick={handleCloseConfirmDialog}>
                         Annuler
                     </Button>
-                    <Button variant="contained" className="btn" onClick={() => buildAndSend()}>
+                    <Button
+                        variant="contained"
+                        className="btn"
+                        onClick={() => buildAndSend()}>
                         Envoyer
                     </Button>
                 </DialogActions>

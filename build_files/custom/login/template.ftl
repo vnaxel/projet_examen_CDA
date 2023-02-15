@@ -44,6 +44,7 @@
     </div>
     <div class="${properties.kcFormCardClass!}">
         <header class="${properties.kcFormHeaderClass!}">
+        <div class="hiddenOnFullScreen"><img src="${url.resourcesPath}/img/mail-142.png" class="header__logo"><h1 class="header__title">MAILER</h1></div>
             <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                 <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
                     <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">

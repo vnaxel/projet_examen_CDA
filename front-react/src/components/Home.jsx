@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material"
+import { Paper, Typography } from "@mui/material"
 import React from "react"
 import logo from "../assets/mail-142.svg"
 
@@ -6,21 +6,17 @@ const Home = () => {
     return (
         <div className="composant">
             <Paper className="homePaper">
-                <h1 className="title">
+                <Typography variant="h1" fontSize={22} className="title">
                     <img className="logo" src={logo} />
-                    MAILER : Application d'envois groupés
-                </h1>
-                <br />
+                    <b>MAILER : Application d'envois de courriers groupés</b>
+                </Typography>
                 <br />
                 <p>
-                    Ce projet est une application d'
-                    <strong>
-                        envoi de lettres vers de multiples destinataires
-                    </strong>
-                    : la lettre est redigée dans l'interface graphique, puis
-                    elle est <strong>materialisée</strong> par la poste avant
-                    d'être <strong>distribuée aux destinataires</strong> par ce
-                    même partenaire.
+                    Ce projet est une application d' envoi de lettres vers de
+                    multiples destinataires : la lettre est redigée dans
+                    l'interface graphique, puis elle est materialisée par la
+                    poste avant d'être distribuée aux destinataires par ce même
+                    partenaire.
                 </p>
                 <br />
                 <p>
@@ -38,41 +34,31 @@ const Home = () => {
                 </p>
                 <br />
                 <p>
-                    Ces evenements kafka sont consommés par le backend typscript
-                    qui se charge de mettre à jour la base de donnée. Le
-                    frontend actualise l'affichage des status toutes les
+                    Ces evenements kafka sont consommés par le backend
+                    typescript qui se charge de mettre à jour la base de donnée.
+                    Le frontend actualise l'affichage des status toutes les
                     secondes.
                 </p>
                 <br />
                 <p>Le projet est composé de 3 applications :</p>
                 <br />
                 <ul>
-                    <li>
-                        Une application front en <strong>React</strong>.
-                    </li>
-                    <li>
-                        Un microservice en <strong>Go</strong>.
-                    </li>
-                    <li>
-                        Un microservice en <strong>Typscript</strong>.
-                    </li>
+                    <li>Une application front en React.</li>
+                    <li>Un microservice en Go.</li>
+                    <li>Un microservice en Typescript.</li>
                 </ul>
                 <br />
-                <p>Le projets utilise plusieurs containers :</p>
+                <p>Le projet utilise plusieurs containers :</p>
                 <br />
                 <ul>
+                    <li>Un container pour la base de données mongo.</li>
                     <li>
-                        Un container pour la base de données{" "}
-                        <strong>mongo</strong>.
+                        Trois containers pour kafka: un broker, un zookeeper et
+                        akhq.
                     </li>
                     <li>
-                        Trois containers pour <strong>kafka</strong>: un broker,
-                        un zookeeper et akhq.
-                    </li>
-                    <li>
-                        Un container <strong>keycloak</strong>, qui detient la
-                        base utilisateur et distribue les tokens
-                        d'authentification et d'autorisation.
+                        Un container keycloak, qui detient la base utilisateur
+                        et distribue les tokens d'authentification.
                     </li>
                 </ul>
                 <br />
