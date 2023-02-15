@@ -37,6 +37,10 @@ a {
   height: 4rem;
 }
 
+.logo--cropped {
+  height: 2rem;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -54,7 +58,7 @@ a {
 }
 
 .inline > div {
-  margin: 0 .7rem 0 0;
+  margin: 0 .7rem 0 .7rem;
 }
 
 .homePaper {
@@ -212,6 +216,10 @@ h1 {
   font-size: .8rem;
 }
 
+.tracking__recipient__name__header {
+  font-size: 1rem !important;
+}
+
 @media (width <= 500px) {
   .tracking__recipient {
     font-size: .6rem;
@@ -221,17 +229,21 @@ h1 {
     margin-left: 0;
     font-size: 1rem;
   }
+
+  .tracking__recipient__name__header {
+    display: none;
+  }
 }
 
 .tracking__recipient__name {
-  width: 25%;
+  width: 34%;
 }
 
 .tracking__recipient__lastStatus {
   display: flex;
   flex-direction: column;
   word-break: break-word;
-  width: 25%;
+  width: 22%;
 }
 
 .tracking__recipient__lastStatus > p {

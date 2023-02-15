@@ -1,12 +1,13 @@
 import TrackingRcpt from "./TrackingRcpt"
 import Paper from "@mui/material/Paper"
 import Box from "@mui/material/Box"
+import { Typography } from "@mui/material"
 
 const Sending = ({ sending }) => {
     return (
         <Paper className="paper tracking-sending">
             <Box className="card">
-                <b>Envoi du {new Date(sending.date).toLocaleString("fr-FR")}</b>
+                <Typography variant="h6" fontSize={16} component="div">Envoi du {new Date(sending.date).toLocaleString("fr-FR")}</Typography>
                 {sending.recipients.map((recipient, index) => (
                     <TrackingRcpt recipient={recipient} key={index} />
                 ))}

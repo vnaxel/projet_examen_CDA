@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import { Link } from "react-router-dom"
 import { useKeycloak } from "@react-keycloak/web"
-import logo from "../assets/mail-142.svg"
+import logo from "../assets/mail-142-cropped.svg"
 
 const Nav = () => {
     const { keycloak } = useKeycloak()
@@ -14,20 +14,20 @@ const Nav = () => {
         <AppBar className="appBar" position="static">
             <Toolbar>
                 <Link to="/send">
-                    <Button color="inherit" className="btn">
+                    <Button color="inherit" className="btn" size="large">
                         Envoi
                     </Button>
                 </Link>
                 <Link to="/tracking">
-                    <Button color="inherit" className="btn">
+                    <Button color="inherit" className="btn" size="large">
                         Suivi
                     </Button>
                 </Link>
                 <div className="title">
                     <Link to="/">
-                        <Button color="inherit" className="btn">
+                        <Button color="inherit" className="btn__logo">
                             <div className="inline">
-                                <img src={logo} alt="" className="logo" />
+                                <img src={logo} alt="" className="logo--cropped" />
                                 <Typography variant="h6" component="div">
                                     MAILER
                                 </Typography>
@@ -37,6 +37,7 @@ const Nav = () => {
                 </div>
                 {!keycloak.authenticated && (
                     <Button
+                        size="large"
                         color="inherit"
                         onClick={() =>
                             keycloak.login({
@@ -48,6 +49,7 @@ const Nav = () => {
                 )}
                 {!!keycloak.authenticated && (
                     <Button
+                        size="large"
                         color="inherit"
                         onClick={() => {
                             keycloak.logout({

@@ -23,22 +23,35 @@ const CreateSending = () => {
     const [dialogOpen, setDialogOpen] = useState(false)
     const [dialogRcpts, setDialogRcpts] = useState([])
 
-    const handleCloseDialog = () => {
-        setDialogOpen(false)
-        setDialogRcpts([])
-    }
+    const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
 
-    const buildAndSend = async () => {
+    const confirmSend = () => {
         if (!letter.length) {
             setLetterTouched(true)
         }
         if (!letter.length) {
+            alert("Le courrier ne peut pas être vide")
             return
         }
         if (!recipients.length) {
             alert("Vous devez ajouter au moins un destinataire")
             return
         }
+        setDialogRcpts(recipients)
+        setConfirmDialogOpen(true)
+    }
+
+    const handleCloseDialog = () => {
+        setDialogOpen(false)
+    }
+
+    const handleCloseConfirmDialog = () => {
+        setConfirmDialogOpen(false)
+        setDialogRcpts([])
+    }
+
+    const buildAndSend = async () => {
+
 
         const body = {
             sending: {
@@ -59,7 +72,6 @@ const CreateSending = () => {
             .then(data => {
                 if (data.sending._id) {
                     setDialogOpen(true)
-                    setDialogRcpts(recipients)
                     setLetter("")
                     setLetterTouched(false)
                     setFirstNameTouched(false)
@@ -68,6 +80,7 @@ const CreateSending = () => {
                     setCityTouched(false)
                     setZipCodeTouched(false)
                     setRecipients([])
+                    setConfirmDialogOpen(false)
                 } else {
                     alert(
                         "Une erreur est survenue lors de l'envoi de la lettre"
@@ -163,6 +176,22 @@ const CreateSending = () => {
                 <DialogTitle>Envoyé</DialogTitle>
                 <DialogContent>
                     <div className="dialog__content">
+                        Envoi confirmé, vous pouvez suivre l'état de votre
+                        lettre
+                    </div>
+                </DialogContent>
+                <DialogActions className="dialog__actions">
+                    <Link to="/tracking">
+                        <Button variant="contained" className="btn">
+                            Aller au suivi
+                        </Button>
+                    </Link>
+                </DialogActions>
+            </Dialog>
+            <Dialog open={confirmDialogOpen} onClose={handleCloseConfirmDialog}>
+                <DialogTitle>Validez l'envoi</DialogTitle>
+                <DialogContent>
+                    <div className="dialog__content">
                         La lettre va être produite puis envoyée au(x)
                         destinataire(s) :
                     </div>
@@ -173,27 +202,24 @@ const CreateSending = () => {
                     ))}
                 </DialogContent>
                 <DialogActions className="dialog__actions">
-                    <Link to="/tracking">
-                        <Button variant="contained" className="btn">
-                            Aller au suivi
-                        </Button>
-                    </Link>
+                    <Button variant="contained" className="btn" color="error" onClick={handleCloseConfirmDialog}>
+                        Annuler
+                    </Button>
+                    <Button variant="contained" className="btn" onClick={() => buildAndSend()}>
+                        Envoyer
+                    </Button>
                 </DialogActions>
             </Dialog>
             <Paper className="paper">
                 <Box className="card">
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{
-                            flexGrow: 1,
-                            fontSize: "1.2rem",
-                        }}>
+                    <Typography variant="h6" component="div">
                         Ajoutez un destinataire
                     </Typography>
                     <Box className="recipient__input" component="form">
                         <div className="formControl">
                             <TextField
+                                variant="filled"
+                                size="small"
                                 id="lastName"
                                 label="Nom"
                                 value={lastName}
@@ -215,6 +241,8 @@ const CreateSending = () => {
 
                         <div className="formControl">
                             <TextField
+                                variant="filled"
+                                size="small"
                                 id="firstName"
                                 label="Prénom"
                                 value={firstName}
@@ -236,6 +264,8 @@ const CreateSending = () => {
 
                         <div className="formControl">
                             <TextField
+                                variant="filled"
+                                size="small"
                                 id="street"
                                 label="Adresse"
                                 value={street}
@@ -256,6 +286,8 @@ const CreateSending = () => {
 
                         <div className="formControl">
                             <TextField
+                                variant="filled"
+                                size="small"
                                 id="city"
                                 label="Ville"
                                 value={city}
@@ -274,6 +306,8 @@ const CreateSending = () => {
 
                         <div className="formControl">
                             <TextField
+                                variant="filled"
+                                size="small"
                                 id="zipCode"
                                 label="Code postal"
                                 value={zipCode}
@@ -297,7 +331,10 @@ const CreateSending = () => {
                             />
                         </div>
 
-                        <Button variant="contained" onClick={handleSubmit}>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            onClick={handleSubmit}>
                             Ajouter
                         </Button>
                     </Box>
@@ -307,13 +344,7 @@ const CreateSending = () => {
             {recipients.length > 0 && (
                 <Paper className="recipientList paper">
                     <Box className="card">
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{
-                                flexGrow: 1,
-                                fontSize: "1.2rem",
-                            }}>
+                        <Typography variant="h6" component="div">
                             Destinataires
                         </Typography>
                         <Box className="recipientList__list">
@@ -336,7 +367,6 @@ const CreateSending = () => {
                             }}
                             value={letter}
                             id="letter"
-                            label="Envoi de message"
                             multiline
                             style={{ width: "100%" }}
                             rows={20}
@@ -351,10 +381,10 @@ const CreateSending = () => {
                     </Box>
                     <Box className="send__submit">
                         <Button
-                            onClick={() => buildAndSend()}
+                            onClick={() => confirmSend()}
                             variant="contained"
                             style={{ width: "5rem" }}>
-                            Send
+                            Envoyer
                         </Button>
                     </Box>
                 </Box>

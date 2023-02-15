@@ -3,6 +3,7 @@ import GradingIcon from "@mui/icons-material/Grading"
 import PrintIcon from "@mui/icons-material/Print"
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead"
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline"
+import { Typography } from "@mui/material"
 
 const TrackingRcpt = ({ recipient }) => {
     return (
@@ -10,10 +11,10 @@ const TrackingRcpt = ({ recipient }) => {
             <Divider sx={{ marginTop: "1rem" }} />
             <div className="tracking__recipient">
                 <div className="tracking__recipient__name">
-                    <p>
-                        <b>Destinataire :</b>
-                    </p>
-                    {recipient.firstName + " " + recipient.lastName}
+                    <Typography variant="h6" className="tracking__recipient__name__header">Destinataire :</Typography>
+                    <p>{recipient.firstName + " " + recipient.lastName}</p>
+                    {" "}
+                    <p>{recipient.address}</p>
                 </div>
 
                 {recipient.deliveryStatuses.statusesHistory.map(
