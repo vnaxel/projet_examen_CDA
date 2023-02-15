@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
 html {
 	min-height: 100%;
@@ -15,6 +15,12 @@ body {
 	margin: 0;
 	padding: 0;
   font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .app {
@@ -184,6 +190,14 @@ body {
 
 .send__submit > button {
   margin-left: 1rem;
+}
+
+.dialog__content {
+  margin-bottom: 1rem;
+}
+
+.dialog__actions {
+  padding: 1rem !important;
 }
 
 h1 {

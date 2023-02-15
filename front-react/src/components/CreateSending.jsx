@@ -162,18 +162,22 @@ const CreateSending = () => {
             <Dialog open={dialogOpen} onClose={handleCloseDialog}>
                 <DialogTitle>Envoyé</DialogTitle>
                 <DialogContent>
-                    La lettre va être produite puis envoyée au(x) destinataire(s)
-                    :
+                    <div className="dialog__content">
+                        La lettre va être produite puis envoyée au(x)
+                        destinataire(s) :
+                    </div>
                     {dialogRcpts.map((rcp, index) => (
                         <li key={index}>
                             {rcp.firstName + " " + rcp.lastName}
                         </li>
                     ))}
                 </DialogContent>
-                <DialogActions>
-                    <Button variant="contained" className="btn">
-                        <Link to="/tracking">Aller au suivi</Link>
-                    </Button>
+                <DialogActions className="dialog__actions">
+                    <Link to="/tracking">
+                        <Button variant="contained" className="btn">
+                            Aller au suivi
+                        </Button>
+                    </Link>
                 </DialogActions>
             </Dialog>
             <Paper className="paper">

@@ -13,23 +13,27 @@ const Nav = () => {
     return (
         <AppBar className="appBar" position="static">
             <Toolbar>
-                <Button color="inherit" className="btn">
-                    <Link to="/send">Envoi</Link>
-                </Button>
-                <Button color="inherit" className="btn">
-                    <Link to="/tracking">Suivi</Link>
-                </Button>
-                <div className="title">
+                <Link to="/send">
                     <Button color="inherit" className="btn">
-                        <Link to="/">
+                        Envoi
+                    </Button>
+                </Link>
+                <Link to="/tracking">
+                    <Button color="inherit" className="btn">
+                        Suivi
+                    </Button>
+                </Link>
+                <div className="title">
+                    <Link to="/">
+                        <Button color="inherit" className="btn">
                             <div className="inline">
                                 <img src={logo} alt="" className="logo" />
                                 <Typography variant="h6" component="div">
                                     MAILER
                                 </Typography>
                             </div>
-                        </Link>
-                    </Button>
+                        </Button>
+                    </Link>
                 </div>
                 {!keycloak.authenticated && (
                     <Button

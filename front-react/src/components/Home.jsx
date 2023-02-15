@@ -1,11 +1,15 @@
 import { Paper } from "@mui/material"
 import React from "react"
+import logo from "../assets/mail-142.svg"
 
 const Home = () => {
     return (
         <div className="composant">
             <Paper className="homePaper">
-                <h1>Examen CDA: Application d'envois groupés</h1>
+                <h1 className="title">
+                    <img className="logo" src={logo} />
+                    MAILER : Application d'envois groupés
+                </h1>
                 <br />
                 <br />
                 <p>
@@ -75,9 +79,11 @@ const Home = () => {
                 <img src="./projet-CDA.drawio.png" alt="" />
                 <p>
                     Le code du projet est disponible sur{" "}
-                    <a href="https://github.com/vnaxel/projet_examen_CDA">
-                        Github
-                    </a>
+                    <u>
+                        <a href="https://github.com/vnaxel/projet_examen_CDA">
+                            Github
+                        </a>
+                    </u>
                     .
                 </p>
             </Paper>
