@@ -56,15 +56,15 @@ services:
               properties:
                 bootstrap.servers: "kafka:29092"
 
-  back-ts:
-    build: ./back-typescript/.
-    ports:
-      - 3001:3001
-    depends_on:
-      - kafka
-    environment:
-      PORT: 3001
-      MONGO: projet_examen_cda-mongo-1:27017
-      KAFKA_BROKER: kafka:9092
-      KEYCLOAK: projet_examen_cda-keycloak-1:8080
+  # back-ts:
+  #   build: ./back-typescript/.
+  #   ports:
+  #     - 3001:3001
+  #   depends_on:
+  #     - kafka
+  #   environment:
+  #     PORT: 3001
+  #     MONGO: mongo:27017
+  #     KAFKA_BROKER: kafka:29092
+  #     KEYCLOAK: keycloak:8080
           
