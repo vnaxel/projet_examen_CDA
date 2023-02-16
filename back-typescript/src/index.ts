@@ -12,7 +12,7 @@ const app: Express = express()
 
 mongoose
     .set('strictQuery', false)
-    .connect(`${process.env.MONGO_URI}`, {
+    .connect(`mongodb://${process.env.MONGO}`, {
         dbName: "sendings",
         autoIndex: true,
         autoCreate: true,

@@ -2,6 +2,7 @@ version: '3.8'
 services:
 
   keycloak:
+    hostname: keycloak
     image: quay.io/keycloak/keycloak:latest
     ports:
       - 8080:8080
@@ -10,7 +11,8 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     command: start-dev
 
-  mongodb:
+  mongo:
+    hostname: mongo
     image: davybello/mongo-replica-set:5.0.12
     ports:
       - 27017:27017
@@ -24,6 +26,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
+    hostname: kafka
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
@@ -52,3 +55,16 @@ services:
             docker-kafka-server:
               properties:
                 bootstrap.servers: "kafka:29092"
+
+  back-ts:
+    build: ./back-typescript/.
+    ports:
+      - 3001:3001
+    depends_on:
+      - kafka
+    environment:
+      PORT: 3001
+      MONGO: projet_examen_cda-mongo-1:27017
+      KAFKA_BROKER: kafka:9092
+      KEYCLOAK: projet_examen_cda-keycloak-1:8080
+          
