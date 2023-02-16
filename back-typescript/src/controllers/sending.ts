@@ -16,7 +16,9 @@ export const postSending = async (req: Request, res: Response) => {
             grant.access_token!!
         )
 
-        console.log(`Sending user : ${userInfos}`)
+        console.log('-------------- Sending user --------------')
+        console.log(userInfos)
+        console.log('------------------------------------------')
 
         const sending = await new Sending({
             senderId: userInfos.sub,

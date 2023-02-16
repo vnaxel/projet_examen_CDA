@@ -1,8 +1,5 @@
 import * as React from "react"
-import AppBar from "@mui/material/AppBar"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
+import { AppBar, Toolbar, Typography, Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import { useKeycloak } from "@react-keycloak/web"
 import logo from "../assets/mail-142-cropped.svg"
@@ -27,7 +24,11 @@ const Nav = () => {
                     <Link to="/">
                         <Button color="inherit" className="btn__logo">
                             <div className="inline">
-                                <img src={logo} alt="" className="logo--cropped" />
+                                <img
+                                    src={logo}
+                                    alt=""
+                                    className="logo--cropped"
+                                />
                                 <Typography variant="h6" component="span">
                                     MAILER
                                 </Typography>

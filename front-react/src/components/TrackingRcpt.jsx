@@ -1,9 +1,8 @@
-import Divider from "@mui/material/Divider"
 import GradingIcon from "@mui/icons-material/Grading"
 import PrintIcon from "@mui/icons-material/Print"
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead"
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline"
-import { Typography } from "@mui/material"
+import { Typography, Divider } from "@mui/material"
 
 const TrackingRcpt = ({ recipient }) => {
     return (

@@ -50,7 +50,7 @@ const App = () => {
                         </BrowserRouter>
                     </div>
                 </React.StrictMode>
-                </ThemeProvider>
+            </ThemeProvider>
         </ReactKeycloakProvider>
     )
 }

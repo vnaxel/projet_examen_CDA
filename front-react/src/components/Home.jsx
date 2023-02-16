@@ -11,9 +11,12 @@ const Home = () => {
                     fontSize={22}
                     className="home__title"
                     component="div">
-                        <div><img className="logo" src={logo} />MAILER</div>
-                        <span className="separator">-</span>
-                        Application d'envoi de courriers groupés
+                    <div>
+                        <img className="logo" src={logo} />
+                        MAILER
+                    </div>
+                    <span className="separator">-</span>
+                    Application d'envoi de courriers groupés
                 </Typography>
                 <br />
                 <p>

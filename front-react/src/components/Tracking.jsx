@@ -1,8 +1,7 @@
 import { useKeycloak } from "@react-keycloak/web"
 import React, { useEffect, useState } from "react"
-import LinearProgress from "@mui/material/LinearProgress"
+import { LinearProgress, Paper } from "@mui/material"
 import Sending from "./Sending"
-import Paper from "@mui/material/Paper"
 
 const Tracking = () => {
     const { keycloak } = useKeycloak()
@@ -26,8 +25,10 @@ const Tracking = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => { // simulate a delay to enjoy MUI loading bar
-            setInterval(() => { // refresh every 1s
+        setTimeout(() => {
+            // simulate a delay to enjoy MUI loading bar
+            setInterval(() => {
+                // refresh every 1s
                 fetchDatas()
             }, 1000)
         }, 1000)
