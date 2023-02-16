@@ -6,9 +6,14 @@ const Home = () => {
     return (
         <div className="composant">
             <Paper className="homePaper">
-                <Typography variant="h1" fontSize={22} className="title">
-                    <img className="logo" src={logo} />
-                    <b>MAILER : Application d'envois de courriers groupés</b>
+                <Typography
+                    variant="h6"
+                    fontSize={22}
+                    className="home__title"
+                    component="div">
+                        <div><img className="logo" src={logo} />MAILER</div>
+                        <span className="separator">-</span>
+                        Application d'envoi de courriers groupés
                 </Typography>
                 <br />
                 <p>
@@ -28,7 +33,7 @@ const Home = () => {
                 <p>
                     Dans ce projet la materialisation et la distribution des
                     lettres est factice: une application Go ecoute les
-                    insertions dans la base de donnée des envois, puis pour
+                    insertions dans la base de donnée des envois, puis, pour
                     chaque destinataire, emet un evenement "Produced" ainsi
                     qu'un evenement "Delivered" après un temps aléatoire.
                 </p>

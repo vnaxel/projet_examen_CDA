@@ -127,6 +127,10 @@ a {
   color: white;
 }
 
+.btn__logo img {
+  margin: 0 .5rem 0 0;
+}
+
 .paper {
   display: flex;
   width: 100%;
@@ -177,6 +181,28 @@ a {
   margin-bottom: 1rem;
 }
 
+.home__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__title > div {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 -.5rem;
+}
+
+.separator {
+  margin: 0 .5rem;
+}
+
+@media (width <= 685px) {
+  .home__title {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
 @media (width <= 500px) {
   .title {

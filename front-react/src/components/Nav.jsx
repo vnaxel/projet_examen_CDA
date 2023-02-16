@@ -28,7 +28,7 @@ const Nav = () => {
                         <Button color="inherit" className="btn__logo">
                             <div className="inline">
                                 <img src={logo} alt="" className="logo--cropped" />
-                                <Typography variant="h6" component="div">
+                                <Typography variant="h6" component="span">
                                     MAILER
                                 </Typography>
                             </div>
