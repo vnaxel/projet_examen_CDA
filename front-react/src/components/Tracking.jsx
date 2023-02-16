@@ -8,6 +8,7 @@ const Tracking = () => {
 
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     const fetchDatas = () => {
         fetch(`http://localhost:3001/sending/${keycloak.tokenParsed.sub}`, {
@@ -21,17 +22,19 @@ const Tracking = () => {
                 data.sendings = data.sendings.reverse()
                 setData(data)
                 setLoading(false)
+                setError(false)
+            })
+            .catch(err => {
+                setError(true)
+                setLoading(false)
             })
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            // simulate a delay to enjoy MUI loading bar
-            setInterval(() => {
-                // refresh every 1s
-                fetchDatas()
-            }, 1000)
+        const interval = setInterval(() => {
+            fetchDatas()
         }, 1000)
+        return () => clearInterval(interval)
     }, [])
 
     return (
@@ -48,6 +51,11 @@ const Tracking = () => {
             {data && data.sendings.length === 0 && (
                 <Paper className="paper card text-center">
                     Vous n'avez pas encore fait d'envoi.
+                </Paper>
+            )}
+            {error && (
+                <Paper className="paper card text-center">
+                    Une erreur est survenue lors du chargement des données.
                 </Paper>
             )}
         </div>
