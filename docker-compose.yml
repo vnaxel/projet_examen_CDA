@@ -12,6 +12,8 @@ services:
 
   mongo:
     image: davybello/mongo-replica-set:5.0.12
+    # environment:
+    #   HOST: mongo
     ports:
       - 27017:27017
       - 27018:27018
@@ -24,7 +26,6 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    hostname: kafka
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
@@ -60,9 +61,12 @@ services:
   #     - 3001:3001
   #   depends_on:
   #     - kafka
+  #     - mongo
   #   environment:
   #     PORT: 3001
-  #     MONGO: mongo:27017
+  #     MONGO_HOSTNAME: mongo
+  #     MONGO_PORT_1: 27017
+  #     MONGO_PORT_2: 27017
+  #     MONGO_PORT_3: 27017
   #     KAFKA_BROKER: kafka:29092
-  #     KEYCLOAK: keycloak:8080
           

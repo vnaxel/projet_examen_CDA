@@ -47,7 +47,7 @@ type recipientEvent struct {
 var p, _ = producer.NewProducer([]string{"localhost:9092"})
 
 func main() {
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017"))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017,localhost:27018,localhost:27019/?replicaSet=rs0&readPreference=primary&ssl=false"))
 	if err != nil {
 		fmt.Println(err)
 		return

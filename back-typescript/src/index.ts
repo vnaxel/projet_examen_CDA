@@ -5,20 +5,16 @@ import { keycloak } from "./config/keycloak"
 import { sendingRouter } from "./routes/sending"
 import { consumeDeliveries } from "./services/deliveriesServices"
 import cors from "cors"
-import mongoose from "mongoose"
+import db from "./config/db"
 
 dotenv.config()
 const app: Express = express()
 
-mongoose
-    .set('strictQuery', false)
-    .connect(`mongodb://${process.env.MONGO}`, {
-        dbName: "sendings",
-        autoIndex: true,
-        autoCreate: true,
-    })
-    .then(() => console.log("⚡ Connexion à MongoDB réussie ! ⚡"))
-    .catch(() => console.log("💧 Connexion à MongoDB échouée ! 💧"))
+db.then(() => console.log("⚡ Connexion à MongoDB réussie ! ⚡"))
+    .catch(err => {
+        console.log("💧 Connexion à MongoDB échouée ! 💧")
+        console.log(err)
+})
 
 app.use(express.json())
 app.use(

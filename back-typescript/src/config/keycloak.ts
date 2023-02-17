@@ -4,15 +4,16 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const config = {
+  
     "realm": "Examen-CDA",
-    "auth-server-url": `http://${process.env.KEYCLOAK}/`,
-    "ssl-required": "none",
+    "auth-server-url": "http://localhost:8080/",
+    "ssl-required": "external",
     "resource": "backend_sending_app",
-    "enable-cors": true,
     "credentials": {
-      "secret": "e6SCrlB9Pah1u4EqlbJvKPveCDnb1Q37"
+      "secret": "mZgdQzxtyF1BPaSAXJabV94tJ7BBa9Ny"
     },
     "confidential-port": 0
+  
 }
 
 export const keycloak = new Keycloak(
