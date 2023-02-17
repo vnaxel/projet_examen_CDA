@@ -12,8 +12,8 @@ services:
 
   mongo:
     image: davybello/mongo-replica-set:5.0.12
-    # environment:
-    #   HOST: mongo
+    environment:
+      HOST: mongo
     ports:
       - 27017:27017
       - 27018:27018
@@ -55,18 +55,24 @@ services:
               properties:
                 bootstrap.servers: "kafka:29092"
 
-  # back-ts:
-  #   build: ./back-typescript/.
-  #   ports:
-  #     - 3001:3001
-  #   depends_on:
-  #     - kafka
-  #     - mongo
-  #   environment:
-  #     PORT: 3001
-  #     MONGO_HOSTNAME: mongo
-  #     MONGO_PORT_1: 27017
-  #     MONGO_PORT_2: 27017
-  #     MONGO_PORT_3: 27017
-  #     KAFKA_BROKER: kafka:29092
-          
+  back-ts:
+    build: ./back-typescript/.
+    ports:
+      - 3001:3001
+    depends_on:
+      - kafka
+      - mongo
+    environment:
+      PORT: 3001
+      MONGO_HOSTNAME: mongo
+      MONGO_PORT_1: 27017
+      MONGO_PORT_2: 27017
+      MONGO_PORT_3: 27017
+      KAFKA_BROKER: kafka:29092
+
+  front-react:
+    build: ./front-react/.
+    ports:
+      - 3000:3000
+    depends_on:
+      - back-ts
