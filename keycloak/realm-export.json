@@ -641,7 +641,7 @@
         "http://localhost:3001/*"
       ],
       "webOrigins": [
-        "*"
+        "+"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -760,7 +760,7 @@
         "http://localhost:3000/*"
       ],
       "webOrigins": [
-        "*"
+        "+"
       ],
       "notBefore": 0,
       "bearerOnly": false,
