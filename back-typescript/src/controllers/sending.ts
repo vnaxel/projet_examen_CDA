@@ -1,30 +1,19 @@
 import { Request, Response } from "express"
-import { keycloak } from "../config/keycloak"
 import Recipient, { RecipientDocument, Statuses } from "../models/recipient"
 import Sending from "../models/sending"
 import { User } from "../models/user"
 
 export const postSending = async (req: Request, res: Response) => {
     try {
-        const grant = await keycloak.getGrant(req, res)
 
-        if (!grant) {
-            return res.status(401).json({ message: "Unauthorized" })
-        }
-
-        const userInfos: User = await keycloak.grantManager.userInfo(
-            grant.access_token!!
-        )
-
-        console.log('-------------- Sending user --------------')
-        console.log(userInfos)
-        console.log('------------------------------------------')
+        const user = res.locals.user as User
+        logUser(user)
 
         const sending = await new Sending({
-            senderId: userInfos.sub,
-            senderName: userInfos.name,
-            senderCompany: userInfos.company,
-            senderAddress: userInfos.userAddress,
+            senderId: user.sub,
+            senderName: user.name,
+            senderCompany: user.company,
+            senderAddress: user.userAddress,
             letter: req.body.sending.letter,
             date: req.body.sending.date,
         }).save()
@@ -34,7 +23,7 @@ export const postSending = async (req: Request, res: Response) => {
                 async (recipient: RecipientDocument) => {
                     const recipt = await new Recipient({
                         sendingId: sending._id,
-                        senderName: userInfos.name,
+                        senderName: user.name,
                         address: recipient.address,
                         firstName: recipient.firstName,
                         lastName: recipient.lastName,
@@ -62,6 +51,8 @@ export const getAllUserSendingsByUserId = async (
     res: Response
 ) => {
     try {
+        
+        logUser(res.locals.user as User)
         const sendings = await Sending.find({
             senderId: req.params.id,
         }).populate("recipients")
@@ -74,4 +65,17 @@ export const getAllUserSendingsByUserId = async (
         console.log(error)
         res.status(500).json({ message: "Something went wrong" })
     }
+}
+
+const logUser = (user: User) => {
+    console.log("-------------- Sending user --------------")
+    console.log(
+        `Id: ${user.sub}
+        Email: ${user.email}
+        Username: ${user.preferred_username}
+        FullName: ${user.name}
+        Address: ${user.userAddress}
+        Company: ${user.company}`
+    )
+    console.log("------------------------------------------")
 }

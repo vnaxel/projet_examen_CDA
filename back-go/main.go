@@ -44,10 +44,10 @@ type recipientEvent struct {
 	FullDocument  recipient           `bson:"fullDocument"`
 }
 
-var p, _ = producer.NewProducer([]string{"localhost:9092"})
+var p, _ = producer.NewProducer([]string{"kafka:29092"})
 
 func main() {
-	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017,localhost:27018,localhost:27019/?replicaSet=rs0&readPreference=primary&ssl=false"))
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://mongo:27017,mongo:27018,mongo:27019/?replicaSet=rs0&readPreference=primary&ssl=false"))
 	if err != nil {
 		fmt.Println(err)
 		return
