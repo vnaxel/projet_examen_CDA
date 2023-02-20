@@ -1,11 +1,12 @@
 import express, { Express, Request, Response } from "express"
 import dotenv from "dotenv"
-import { appSession } from "./config/memoryStore"
-import { keycloak } from "./config/keycloak"
 import { sendingRouter } from "./routes/sending"
 import { consumeDeliveries } from "./services/deliveriesServices"
+import getKeycloakRealmPK from "./config/getRealmPK"
 import cors from "cors"
 import db from "./config/db"
+
+getKeycloakRealmPK()
 
 dotenv.config()
 const app: Express = express()
@@ -17,13 +18,7 @@ db.then(() => console.log("⚡ Connexion à MongoDB réussie ! ⚡"))
 })
 
 app.use(express.json())
-app.use(
-    cors({
-        origin: ["http://localhost:3000", "http://localhost:8080"],
-    })
-)
-app.use(appSession)
-app.use(keycloak.middleware())
+app.use(cors())
 consumeDeliveries()
 
 app.get("/", (req: Request, res: Response) => {

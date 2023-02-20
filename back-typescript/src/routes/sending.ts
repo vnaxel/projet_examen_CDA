@@ -3,12 +3,12 @@ import {
     getAllUserSendingsByUserId,
     postSending,
 } from "../controllers/sending"
-import { keycloak } from "../config/keycloak"
+import auth from "../middleware/auth"
 
 const router = express.Router()
 
-router.post("/", keycloak.protect(), postSending)
+router.post("/", auth, postSending)
 
-router.get("/:id", keycloak.protect(), getAllUserSendingsByUserId)
+router.get("/:id", auth, getAllUserSendingsByUserId)
 
 export { router as sendingRouter }
