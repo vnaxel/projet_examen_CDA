@@ -7,10 +7,7 @@ export const postSending = async (req: Request, res: Response) => {
     try {
 
         const user = res.locals.user as User
-    
-        console.log('-------------- Sending user --------------')
-        console.log(user)
-        console.log('------------------------------------------')
+        logUser(user)
 
         const sending = await new Sending({
             senderId: user.sub,
@@ -54,6 +51,8 @@ export const getAllUserSendingsByUserId = async (
     res: Response
 ) => {
     try {
+        
+        logUser(res.locals.user as User)
         const sendings = await Sending.find({
             senderId: req.params.id,
         }).populate("recipients")
@@ -66,4 +65,17 @@ export const getAllUserSendingsByUserId = async (
         console.log(error)
         res.status(500).json({ message: "Something went wrong" })
     }
+}
+
+const logUser = (user: User) => {
+    console.log("-------------- Sending user --------------")
+    console.log(
+        `Id: ${user.sub}
+        Email: ${user.email}
+        Username: ${user.preferred_username}
+        FullName: ${user.name}
+        Address: ${user.userAddress}
+        Company: ${user.company}`
+    )
+    console.log("------------------------------------------")
 }
