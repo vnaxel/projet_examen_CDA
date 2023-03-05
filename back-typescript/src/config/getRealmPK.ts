@@ -5,11 +5,11 @@ const getKeycloakRealmPK = async () => {
     try {
         const client = jwksClient({
             jwksUri:
-                "http://keycloak:8080/realms/Examen-CDA/protocol/openid-connect/certs",
+            `${process.env.KEYCLOAK_URL + "/realms/Examen-CDA/protocol/openid-connect/certs"}`
         })
 
         const data = await fetch(
-            "http://keycloak:8080/realms/Examen-CDA/protocol/openid-connect/certs"
+            `${process.env.KEYCLOAK_URL + "/realms/Examen-CDA/protocol/openid-connect/certs"}`
         ).then(res => res.json())
 
         const kid = data.keys[1].kid

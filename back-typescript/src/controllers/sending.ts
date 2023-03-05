@@ -3,9 +3,12 @@ import Recipient, { RecipientDocument, Statuses } from "../models/recipient"
 import Sending from "../models/sending"
 import { User } from "../models/user"
 
-export const postSending = async (req: Request, res: Response) => {
-    try {
+export const postSending = async (
+    req: Request, 
+    res: Response
+) => {
 
+    try {
         const user = res.locals.user as User
         logUser(user)
 
@@ -50,9 +53,8 @@ export const getAllUserSendingsByUserId = async (
     req: Request,
     res: Response
 ) => {
+
     try {
-        
-        logUser(res.locals.user as User)
         const sendings = await Sending.find({
             senderId: req.params.id,
         }).populate("recipients")
@@ -68,14 +70,13 @@ export const getAllUserSendingsByUserId = async (
 }
 
 const logUser = (user: User) => {
-    console.log("-------------- Sending user --------------")
-    console.log(
-        `Id: ${user.sub}
-        Email: ${user.email}
-        Username: ${user.preferred_username}
-        FullName: ${user.name}
-        Address: ${user.userAddress}
-        Company: ${user.company}`
+    console.log("-------------- sending user --------------")
+    console.log(`Id: ${user.sub}
+Email: ${user.email}
+Username: ${user.preferred_username}
+FullName: ${user.name}
+Address: ${user.userAddress}
+Company: ${user.company}`
     )
     console.log("------------------------------------------")
 }

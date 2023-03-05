@@ -6,9 +6,9 @@ import getKeycloakRealmPK from "./config/getRealmPK"
 import cors from "cors"
 import db from "./config/db"
 
-getKeycloakRealmPK()
-
 dotenv.config()
+
+getKeycloakRealmPK()
 const app: Express = express()
 
 db.then(() => console.log("⚡ Connexion à MongoDB réussie ! ⚡"))
@@ -18,12 +18,12 @@ db.then(() => console.log("⚡ Connexion à MongoDB réussie ! ⚡"))
 })
 
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+    {
+        origin: process.env.CORS_ORIGIN || ["http://localhost:3000", "http://localhost:3001"]
+    }
+))
 consumeDeliveries()
-
-app.get("/", (req: Request, res: Response) => {
-    res.send("Express + TypeScript Server root path")
-})
 
 app.use("/sending", sendingRouter)
 

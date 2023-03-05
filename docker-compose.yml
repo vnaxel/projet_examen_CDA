@@ -96,6 +96,7 @@ services:
     environment:
       PORT: 3001
       KAFKA_BROKER: kafka:29092
+      KEYCLOAK_URL: http://keycloak:8080/
       MONGO_HOSTNAME: mongo
       MONGO_PORT_1: 27017
       MONGO_PORT_2: 27017
