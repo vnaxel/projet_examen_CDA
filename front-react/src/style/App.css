@@ -82,7 +82,7 @@ a {
   height: 100%;
 }
 
-@media (width <= 800px) {
+@media (width <= 400px) {
   .homePaper > img {
     display: none;
   }

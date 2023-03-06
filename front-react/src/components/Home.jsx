@@ -70,7 +70,7 @@ const Home = () => {
                     </li>
                 </ul>
                 <br />
-                <img src="./projet-CDA.drawio.png" alt="" />
+                <img src="./schema_d'architecture.drawio.svg" alt="" />
                 <p>
                     Le code du projet est disponible sur{" "}
                     <u>
