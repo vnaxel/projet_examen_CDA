@@ -11,6 +11,10 @@ const auth = (req: Request, res: Response, next: Function) => {
     
     const key: string = process.env.PUBLIC_KEY || ''
 
+    if (!key || key === '') {
+        return res.status(500).json({ message: "An error occured while authenticating" })
+    }
+
     const decoded = jwt.verify(token, key, { algorithms: ['RS256'] })
 
     res.locals.user = decoded
