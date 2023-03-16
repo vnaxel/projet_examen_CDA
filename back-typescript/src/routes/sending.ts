@@ -3,7 +3,7 @@ import {
     getAllUserSendingsByUserId,
     postSending,
 } from "../controllers/sending"
-import auth from "../middleware/auth"
+import auth from "../middlewares/auth"
 
 const router = express.Router()
 
