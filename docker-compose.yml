@@ -99,8 +99,8 @@ services:
       KEYCLOAK_URL: http://keycloak:8080/
       MONGO_HOSTNAME: mongo
       MONGO_PORT_1: 27017
-      MONGO_PORT_2: 27017
-      MONGO_PORT_3: 27017
+      MONGO_PORT_2: 27018
+      MONGO_PORT_3: 27019
 
   back-go:
     build: ./back-go/.
